@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="EventsAroundU"
+  id="myeclipse.1381004621192"
+  context-root="/EventsAroundU"
+  j2ee-spec="5.0"
+  archive="EventsAroundU.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
