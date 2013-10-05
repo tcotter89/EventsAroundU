@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
   </head>
   
-  <body>
-    This is Tom's JSP page. <br>
+  <body> 
+    This is Ryans Page. Hello<br>
   </body>
 </html>
