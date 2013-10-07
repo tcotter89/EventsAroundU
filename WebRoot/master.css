@@ -1,0 +1,45 @@
+body {
+	text-align:center;
+	font-family:verdana;
+	}
+	
+.banner {
+	padding: 50px;
+	border-radius:10px;
+	background-color:#7777CC;
+	color:#FFFFFF;
+	display:inline-block;
+	font-size:30px;
+	}
+
+.loginBox {
+	margin-top:20%;
+	padding: 20px;
+	border-radius:5px;
+	background-color:#AAAACC;
+	color:#FFFFFF;
+	display:inline-block;
+	}
+	
+.loginBox label {
+	margin-right:5px;
+	width:90px;
+	text-align:right;
+	font-size:16px;
+	display:inline-block;
+	}
+	
+.loginBox .header {
+	font-size:20px;
+	text-align:center;
+	}
+	
+.message {
+	margin-top:20%;
+	padding: 20px;
+	border-radius:5px;
+	background-color:#AACCAA;
+	color:#FFFFFF;
+	display:inline-block;
+	font-size:20px;
+	}
