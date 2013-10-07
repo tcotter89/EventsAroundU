@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	Welcome User
     </div>
         <div id="map-canvas"></div>
-   <s:form name="marker" action="addmarker.action" >
+   <s:form name="marker" action="addmarker.action" />
 
    Description:<input type="text" id="markerinfo" name="markerinfo"/>
 
