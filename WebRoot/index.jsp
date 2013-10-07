@@ -5,7 +5,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
   <head>
     <base href="<%=basePath%>">
@@ -25,11 +25,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	</div>
   	<br/>
     <div class="loginBox">
-    	<label class="header">Sign In</label><br /><br />
-    	<label>Username:</label><input type="text"/><br/>
-    	<label>Password:</label><input type="text"/><br /><br />
-    	<a href="welcome.jsp"><button>Log In</button></a>
-    	<a href="welcome.jsp"><button>Register</button></a>
+    	<s:form action="Login.action">
+            <s:textfield label="Username" name="username" />
+            <s:password label="Password" name="password" />
+           <table>
+           <tr>
+           <td><s:submit value="Log in"/></td>
+           </tr>
+           </table>
+        </s:form>
     </div>
+   
+    <div class="registerBox">
+    	<s:form action="Register.action">
+    		<s:textfield label="Username" name="username" />
+    		<s:password label="Password" name="password" />
+    		<s:textfield label="Email" name="useremail" />
+    		<s:textfield label="Gender" name="usergender" />
+    		<s:textfield label="Phone" name="userphone" />
+    		<s:textfield label="Address" name="useraddr" />
+    	<table>
+           <tr>
+           <td><s:submit value="Register"/></td>
+           </tr>
+        </table>
+    	</s:form>
+    </div>		
   </body>
 </html>

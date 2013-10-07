@@ -34,6 +34,15 @@ body {
 	text-align:center;
 	}
 	
+.RegisterBox {
+	margin-top:20%;
+	padding: 20px;
+	border-radius:5px;
+	background-color:#AAAACC;
+	color:#FFFFFF;
+	display:inline-block;
+	}
+		
 .message {
 	margin-top:20%;
 	padding: 20px;
