@@ -3,7 +3,7 @@
 
 <struts>
 	<package name="default" extends="struts-default">
-		<action name="login" class="action.Login" method="testUser">
+		<action name="Login" class="action.Login" method="TestUser">
 			<result name="login_fail">/welcome.jsp</result>
 			<result name="login_success">/welcome.jsp</result>
 		</action>

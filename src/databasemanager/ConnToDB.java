@@ -4,7 +4,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 /**
  * 
- * @author Ang Li
+
  *
  */
 
@@ -23,13 +23,13 @@ public class ConnToDB {
 		try {
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/eau", "root", "5945");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/eventsaroundu", "root", "5945");
 			
 			if (!connection.isClosed()) {
 				System.out.println("Succeed to connect the database!!");
 			}
 		} catch (ClassNotFoundException e) {
-			System.out.println("Sorry cann't find the Drvier!");
+			System.out.println("Sorry can't find the Drvier!");
 			e.printStackTrace();
 		} catch (SQLException e) {
 			System.out.println("There is SQLException!");
