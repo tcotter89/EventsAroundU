@@ -7,7 +7,8 @@
 			<result name="login_fail">/welcome.jsp</result>
 			<result name="login_success">/welcome.jsp</result>
 		</action>
-
+		<action name="Register" class="action.Register" method = "RunRegister">
+		</action>
 	</package>
 
 </struts>    
