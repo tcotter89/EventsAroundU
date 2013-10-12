@@ -1,27 +1,20 @@
 package action;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
 import databasemanager.ConnToDB;
 
 public class Login extends HttpServlet{
+	/**
+	 * 
+	 */	
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
@@ -59,7 +52,7 @@ public void setPassword(String password) {
 				+ username + "'");
 		if (rs.next()) {
 			DBpassword = rs.getString("user_password");
-
+			
 			if (DBpassword.equals(password)) {
 				System.out.println("password is right");
 	
