@@ -23,7 +23,7 @@ public class ConnToDB {
 		try {
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:MySQL://127.0.0.1:3306/eventsaroundu?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true","root","admin");
+			connection = DriverManager.getConnection("jdbc:MySQL://127.0.0.1:3306/eventsaroundu?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true","root","5945");
 			
 			if (!connection.isClosed()) {
 				System.out.println("Succeed to connect the database!!");
