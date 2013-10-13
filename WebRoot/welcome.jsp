@@ -20,26 +20,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="master.css">
 
 	<style>
-      html, body, #map-canvas {
-        margin: 0;
-        padding: 0;
-        height: 70%;
-      }
+      
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script>
-    var map;
-	function initialize() {
-  	var mapOptions = {
-    	zoom: 18,
-    	center: new google.maps.LatLng(32.732556, -97.113972),
-    	mapTypeId: google.maps.MapTypeId.ROADMAP
-  	};
- 	 map = new google.maps.Map(document.getElementById('map-canvas'),
-      	mapOptions);
-	}
-
-	google.maps.event.addDomListener(window, 'load', initialize);
+	    var map;
+		function initialize() {
+	  	var mapOptions = {
+	    	zoom: 18,
+	    	center: new google.maps.LatLng(32.732556, -97.113972),
+	    	mapTypeId: google.maps.MapTypeId.ROADMAP
+	  	};
+	 	 map = new google.maps.Map(document.getElementById('map-canvas'),
+	      	mapOptions);
+		}
+	
+		google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
   </head>
@@ -48,11 +44,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="message">
     	Welcome User
     </div>
+    <br />
+    <div class="map">
         <div id="map-canvas"></div>
+    </div>
    <s:form name="marker" action="AddMarker.action" />
-
-   Description:<input type="text" id="markerinfo" name="markerinfo"/>
-
+   		Description:<input type="text" id="markerinfo" name="markerinfo"/>
    <s:submit value="Submit" theme="simple"/>
   </body>
 </html>

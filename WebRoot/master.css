@@ -27,6 +27,7 @@ body {
 	text-align:right;
 	font-size:16px;
 	display:inline-block;
+	color:#FFFFFF;
 	}
 	
 .loginBox .header {
@@ -42,13 +43,31 @@ body {
 	color:#FFFFFF;
 	display:inline-block;
 	}
+	
+.RegisterBox label {
+	color:#FFFFFF;
+	}
 		
 .message {
-	margin-top:20%;
-	padding: 20px;
+	margin-top:10%;
+	padding:20px;
 	border-radius:5px;
 	background-color:#AACCAA;
 	color:#FFFFFF;
 	display:inline-block;
 	font-size:20px;
 	}
+	
+.map {
+	padding:10px;
+	border-radius:5px;
+	display:inline-block;
+	height:100%;
+	width:70%;
+	}
+	
+html, body, #map-canvas {
+    margin: 0;
+    padding: 0;
+    height: 70%;
+    }

@@ -15,6 +15,7 @@ public class Register extends HttpServlet{
 	
 	private String register_username;
 	private String register_password;
+	private String register_userrealname;
 	private String register_useremail;
 	private String register_usergender;
 	private String register_userphone;
@@ -44,6 +45,7 @@ public class Register extends HttpServlet{
 	private void getParameter(){
 		register_username = request.getParameter("username");
 		register_password = request.getParameter("password");
+		register_userrealname = request.getParameter("userrealname");
 		register_useremail = request.getParameter("useremail");
 		register_usergender = request.getParameter("usergender");
 		register_userphone = request.getParameter("userphone");
