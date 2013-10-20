@@ -53,6 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       	//title:username
   		});
   		map.setCenter(location);
+  		
 		}
 		
 		google.maps.event.addDomListener(window, 'load', initialize);
