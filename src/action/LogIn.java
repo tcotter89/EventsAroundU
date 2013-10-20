@@ -2,6 +2,8 @@ package action;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,6 +33,8 @@ public String getUsername() {
 
 public void setUsername(String username) {
 	this.username = username;
+	HttpSession session = request.getSession();
+	session.setAttribute("username", username);
 }
 
 public String getPassword() {

@@ -2,6 +2,7 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String loadedUsername = session.getAttribute("username").toString();
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -62,10 +63,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <div class="message">
-    	Welcome User
+    	Welcome ${username}
     </div>
     <div id="map_canvas" style="width:100%; height:100%">
-    </div>	
+    </div>
     <br />
 
   </body>
