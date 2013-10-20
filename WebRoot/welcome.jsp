@@ -54,6 +54,7 @@ String loadedUsername = session.getAttribute("username").toString();
       	//title:username
   		});
   		map.setCenter(location);
+  		
 		}
 		
 		google.maps.event.addDomListener(window, 'load', initialize);
