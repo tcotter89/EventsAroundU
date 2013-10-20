@@ -41,25 +41,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
    
     <div class="registerBox">
-    	<s:form action="Register.action">
-
-    		<s:textfield id="Username" label="Username" name="username" />
-    		<s:label id="UsernameError" style="color: red"></s:label>
-    		<s:password id="Password" label="Password" name="password" />
-    		<s:label id="PasswordError" style="color: red"></s:label>
-    		<s:textfield id="Name" label="Name" name="userrealname" />
-    		<s:label id="NameError" style="color: red"></s:label>
-    		<s:textfield label="Email" name="useremail" />
-    		<s:textfield label="Gender" name="usergender" />
-    		<s:textfield label="Phone" name="userphone" />
-    		<s:textfield label="Address" name="useraddr" />
-    	<table>
+	   	<s:form action="Register.action">
+	
+	   		<s:textfield id="Username" label="Username" name="username" />
+	   		<s:label id="UsernameError" cssClass="errorMsg"></s:label>
+	   		<s:password id="Password" label="Password" name="password" />
+	   		<s:label id="PasswordError" cssClass="errorMsg"></s:label>
+	   		<s:textfield id="Name" label="Name" name="userrealname" />
+	   		<s:label id="NameError" cssClass="errorMsg"></s:label>
+	   		<s:textfield label="Email" name="useremail" />
+	   		<s:textfield label="Gender" name="usergender" />
+	   		<s:textfield label="Phone" name="userphone" />
+	   		<s:textfield label="Address" name="useraddr" />
+	   	<table>
 	        <tr>
-        		<td><s:submit id="btnRegister" value="Register"/></td>
+	       		<td><s:submit id="btnRegister" value="Register"/></td>
 	        </tr>
-        </table>
-    	</s:form>
-    	<h4 id="UsernameError" style="color: red">Name</h4>
+	       </table>
+	   	</s:form>
     </div>		
   </body>
 <script type="text/javascript">
