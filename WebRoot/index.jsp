@@ -18,6 +18,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="Events Around U">
 	<link rel="stylesheet" type="text/css" href="master.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	
+	
+	
   </head>
   
   <body> 
