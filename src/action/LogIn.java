@@ -27,28 +27,23 @@ public class Login extends HttpServlet{
 	
 	HttpServletRequest request = ServletActionContext.getRequest();
 
-public String getUsername() {
-	return username;
-}
-
-public void setUsername(String username) {
-	this.username = username;
-	HttpSession session = request.getSession();
-	session.setAttribute("username", username);
-}
-
-public String getPassword() {
-	return password;
-}
-
-public void setPassword(String password) {
-	this.password = password;
-}
-
-
+	public String getUsername() {
+		return username;
+	}
 	
-	public String TestUser() throws SQLException{
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
+	public String TestUser() throws SQLException{
 		ConnToDB ctd = new ConnToDB();
 		conn = ctd.getConnection();
 		stmt = conn.createStatement();
@@ -59,9 +54,6 @@ public void setPassword(String password) {
 			
 			if (DBpassword.equals(password)) {
 				System.out.println("password is right");
-	
-
-				
 				return "login_success";
 			} else {
 				return "login_fail";
@@ -70,8 +62,6 @@ public void setPassword(String password) {
 		} else {
 			return "login_fail";
 		}
-		
-		
 	}
 }
 
