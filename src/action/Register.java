@@ -2,11 +2,15 @@ package action;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.*;
+//import javax.servlet.*;
 import org.apache.struts2.ServletActionContext;
 import databasemanager.*;
-
+//import java.util.*;
+//import java.util.Date;
+//import java.text.SimpleDateFormat;
 import java.sql.*;
+
+
 /**
  * 
  * This class is to add register to database
@@ -21,6 +25,7 @@ public class Register extends HttpServlet{
 	private String register_usergender;
 	private String register_userphone;
 	private String register_useraddr;
+	private Timestamp register_registertime;
 	private Connection connection;
 	private Statement statement;
 	private ResultSet resultSet;
@@ -50,7 +55,14 @@ public class Register extends HttpServlet{
 		register_useremail = request.getParameter("useremail");
 		register_usergender = request.getParameter("usergender");
 		register_userphone = request.getParameter("userphone");
-		register_useraddr = request.getParameter("useraddr");	
+		register_useraddr = request.getParameter("useraddr");
+		//get the system date
+//		SimpleDateFormat dfDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		register_registertime = new Date();
+		register_registertime = new Timestamp(System.currentTimeMillis());
+//		Date date = new Date();
+//		register_registertime = new Date(date.getTime());
+		
 	}
 	
 	/**
@@ -64,8 +76,10 @@ public class Register extends HttpServlet{
 		///check for duplicate user before inserting
 		if (duplicateUserCheck() == false) {
 			//execute the SQL sentence
-			//System.out.println("insert into user (user_name,user_password,user_username,user_email,user_gender,user_phone,user_address,user_picture,user_register_time) values ('"+register_username+"','"+register_password+"',0,'"+register_useremail+"','"+register_usergender+"','"+register_userphone+"','"+register_useraddr+"',0,0)");
-			String insertSqlString = "insert into user (user_name,user_password,user_username,user_email,user_gender,user_phone,user_address,user_picture,user_register_time) values ('"+register_username+"','"+register_password+"',0,'"+register_useremail+"','"+register_usergender+"','"+register_userphone+"','"+register_useraddr+"',0,0)";
+
+			System.out.println("insert into user (user_name,user_password,user_username,user_email,user_gender,user_phone,user_address,user_picture,user_register_time) values ('"+register_username+"','"+register_password+"',0,'"+register_useremail+"','"+register_usergender+"','"+register_userphone+"','"+register_useraddr+"',0,'"+register_registertime+"')");
+			String insertSqlString = "insert into user (user_name,user_password,user_username,user_email,user_gender,user_phone,user_address,user_picture,user_register_time) values ('"+register_username+"','"+register_password+"',0,'"+register_useremail+"','"+register_usergender+"','"+register_userphone+"','"+register_useraddr+"',0,'"+register_registertime+"')";
+
 			statement = connection.createStatement();
 			statement.execute(insertSqlString);
 			
@@ -90,7 +104,11 @@ public class Register extends HttpServlet{
 			System.out.println("User already exists");
 		}
 	}
-	
+	/**
+	 * This method is to check the duplicate user register.
+	 * @return
+	 * @throws SQLException
+	 */
 	private boolean duplicateUserCheck ()throws SQLException{
 		ConnToDB ctd = new ConnToDB();
 		connection = ctd.getConnection();
