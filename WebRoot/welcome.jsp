@@ -122,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <div class="message">
-    	Welcome User
+    	Welcome ${username}
     </div>
     <div id="map_canvas" style="width:100%; height:100%">
     </div>	
