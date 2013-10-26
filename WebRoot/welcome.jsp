@@ -29,6 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        src="https://maps.google.com/maps/api/js?sensor=false&language=en">
     </script>
     <script type="text/javascript">
+
       function initialize() {
       var startlatlng=new google.maps.LatLng(32.732556, -97.113972);
         var mapOptions = {
@@ -39,24 +40,82 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
             
+       
         google.maps.event.addListener(map, 'click', function(event) {
        // alert(event.latLng);
     	addMarker(event.latLng, map);
-  		});
-            
+  		});      
+  		      
       }
       function addMarker(location, map) {
-      alert("1");
+
   		var marker = new google.maps.Marker({
       	position: location,
       	map: map
       	//title:username
   		});
-  		map.setCenter(location);
-  		
-		}
-		
+  		marker.set("editing", false);
+    
+
+    var htmlBox = document.createElement("div");
+    //htmlBox.innerHTML = options.html || "";
+    htmlBox.style.width = "300px";
+    htmlBox.style.height = "100px";
+    
+
+    var textBox = document.createElement("textarea");
+    //textBox.innerText = options.html || "";
+    textBox.style.width = "300px";
+    textBox.style.height = "100px";
+    textBox.style.display = "none";
+    
+
+    var container = document.createElement("div");
+    container.style.position = "relative";
+    container.appendChild(htmlBox);
+    container.appendChild(textBox);
+    
+
+    var editBtn = document.createElement("button");
+    editBtn.innerText = "Edit";
+    container.appendChild(editBtn);
+    
+
+    var infoWnd = new google.maps.InfoWindow({
+      content : container
+    });
+    
+
+    google.maps.event.addListener(marker, "click", function() {
+      infoWnd.open(marker.getMap(), marker);
+    });
+    
+
+    google.maps.event.addDomListener(editBtn, "click", function() {
+      marker.set("editing", !marker.editing);
+    });
+    
+
+    google.maps.event.addListener(marker, "editing_changed", function(){
+      textBox.style.display = this.editing ? "block" : "none";
+      htmlBox.style.display = this.editing ? "none" : "block";
+    });
+    
+
+    google.maps.event.addDomListener(textBox, "change", function(){
+      htmlBox.innerHTML = textBox.value;
+      marker.set("html", textBox.value);
+    });
+    return marker;
+  		map.setCenter(location); 
+  	  google.maps.event.addListener(marker, "html_changed", function(){
+      console.log(this.html);
+    });
+  		}
+
+
 		google.maps.event.addDomListener(window, 'load', initialize);
+
     </script>
 	
   </head>
