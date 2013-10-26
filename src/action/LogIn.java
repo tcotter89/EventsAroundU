@@ -43,12 +43,16 @@ public class Login extends HttpServlet{
 	}
 
 	public String TestUser() throws SQLException{
+		System.out.println("111111111111111111111111111111111111");
 		ConnToDB ctd = new ConnToDB();
 		conn = ctd.getConnection();
 		stmt = conn.createStatement();
-		rs = stmt.executeQuery("select * from user where user_username = '"
+		rs = stmt.executeQuery("select * from user where user_name = '"
+				+ username + "'");
+		System.out.println("select * from user where user_name = '"
 				+ username + "'");
 		if (rs.next()) {
+			System.out.println("2222222222222222222222222222222222222222");
 			DBpassword = rs.getString("user_password");
 			
 			if (DBpassword.equals(password)) {
