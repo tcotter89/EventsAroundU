@@ -63,9 +63,8 @@ public class Register extends HttpServlet{
 		
 		///check for duplicate user before inserting
 		if (duplicateUserCheck() == false) {
-			System.out.println("user already exists");
 			//execute the SQL sentence
-			System.out.println("insert into user (user_name,user_password,user_username,user_email,user_gender,user_phone,user_address,user_picture,user_register_time) values ('"+register_username+"','"+register_password+"',0,'"+register_useremail+"','"+register_usergender+"','"+register_userphone+"','"+register_useraddr+"',0,0)");
+			//System.out.println("insert into user (user_name,user_password,user_username,user_email,user_gender,user_phone,user_address,user_picture,user_register_time) values ('"+register_username+"','"+register_password+"',0,'"+register_useremail+"','"+register_usergender+"','"+register_userphone+"','"+register_useraddr+"',0,0)");
 			String insertSqlString = "insert into user (user_name,user_password,user_username,user_email,user_gender,user_phone,user_address,user_picture,user_register_time) values ('"+register_username+"','"+register_password+"',0,'"+register_useremail+"','"+register_usergender+"','"+register_userphone+"','"+register_useraddr+"',0,0)";
 			statement = connection.createStatement();
 			statement.execute(insertSqlString);
@@ -88,7 +87,7 @@ public class Register extends HttpServlet{
 			System.out.println("User added successfully");
 		}
 		else {
-			System.out.println("user already exists");
+			System.out.println("User already exists");
 		}
 	}
 	
