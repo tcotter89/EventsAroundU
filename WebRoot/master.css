@@ -35,7 +35,11 @@ body {
 	text-align:center;
 	}
 	
-.RegisterBox {
+.loginBox textfield {
+	width:100px;
+	}
+	
+.registerBox {
 	margin-top:20%;
 	padding: 20px;
 	border-radius:5px;
@@ -44,8 +48,16 @@ body {
 	display:inline-block;
 	}
 	
-.RegisterBox label {
+.registerBox label {
 	color:#FFFFFF;
+	}
+	
+.registerBox input {
+	width:156px;
+	}
+		
+.registerBox select {
+	width:156px;
 	}
 		
 .message {

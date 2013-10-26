@@ -2,6 +2,8 @@ package action;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,26 +27,23 @@ public class Login extends HttpServlet{
 	
 	HttpServletRequest request = ServletActionContext.getRequest();
 
-public String getUsername() {
-	return username;
-}
-
-public void setUsername(String username) {
-	this.username = username;
-}
-
-public String getPassword() {
-	return password;
-}
-
-public void setPassword(String password) {
-	this.password = password;
-}
-
-
+	public String getUsername() {
+		return username;
+	}
 	
-	public String TestUser() throws SQLException{
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
+	public String TestUser() throws SQLException{
 		ConnToDB ctd = new ConnToDB();
 		conn = ctd.getConnection();
 		stmt = conn.createStatement();
@@ -55,9 +54,6 @@ public void setPassword(String password) {
 			
 			if (DBpassword.equals(password)) {
 				System.out.println("password is right");
-	
-
-				
 				return "login_success";
 			} else {
 				return "login_fail";
@@ -66,8 +62,6 @@ public void setPassword(String password) {
 		} else {
 			return "login_fail";
 		}
-		
-		
 	}
 }
 

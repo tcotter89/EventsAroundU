@@ -18,9 +18,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="Events Around U">
 	<link rel="stylesheet" type="text/css" href="master.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	
-	
-	
   </head>
   
   <body> 
@@ -32,31 +29,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<s:form action="Login.action">
             <s:textfield label="Username" name="username" />
             <s:password label="Password" name="password" />
-           <table>
-	           <tr>
-          	   		<td><s:submit value="Log in"/></td>
-	           </tr>
-           </table>
+	        <table>
+	         <tr>
+       	   		<td><s:submit value="Log in"/></td>
+	         </tr>
+	        </table>
         </s:form>
     </div>
    
     <div class="registerBox">
 	   	<s:form action="Register.action">
-	
-	   		<s:textfield id="Username" label="Username" name="username" />
-	   		<s:label id="UsernameError" cssClass="errorMsg"></s:label>
-	   		<s:password id="Password" label="Password" name="password" />
-	   		<s:label id="PasswordError" cssClass="errorMsg"></s:label>
-	   		<s:textfield id="Name" label="Name" name="userrealname" />
-	   		<s:label id="NameError" cssClass="errorMsg"></s:label>
-	   		<s:textfield label="Email" name="useremail" />
-	   		<s:textfield label="Gender" name="usergender" />
-	   		<s:textfield label="Phone" name="userphone" />
-	   		<s:textfield label="Address" name="useraddr" />
-	   	<table>
-	        <tr>
-	       		<td><s:submit id="btnRegister" value="Register"/></td>
-	        </tr>
+	   		<s:textfield id="txtUsername" label="Username" name="username" />
+	   		<s:label id="lblErrUsername" cssClass="errorMsg"></s:label>
+	   		<s:password id="txtPassword" label="Password" name="password" />
+	   		<s:label id="lblErrPassword" cssClass="errorMsg"></s:label>
+	   		<s:textfield id="txtName" label="Name" name="userrealname" />
+	   		<s:label id="lblErrName" cssClass="errorMsg"></s:label>
+	   		<s:textfield id="txtEmail" label="Email" name="useremail" />
+	   		<s:select label="Gender" 
+				headerKey="-1" headerValue="Select Gender"
+				list="#{'0':'Male', '1':'Female'}" 
+				name="usergender"
+				id="ddlGender" 
+				value="-1" />
+	   		<s:label id="lblErrGender" cssClass="errorMsg"></s:label>
+	   		<s:textfield id="txtPhone" label="Phone" name="userphone" />
+	   		<s:textfield id="txtAddress" label="Address" name="useraddr" />
+	   		<table>
+		        <tr>
+		       		<td><s:submit id="btnRegister" value="Register"/></td>
+		        </tr>
 	       </table>
 	   	</s:form>
     </div>		
@@ -65,49 +67,58 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        $('#btnRegister').click(function () {
             var validinfo = true;
             //Username Validation
-            if ($('#Username').val() == "") {
-                $('#UsernameError').html("Please Enter a Username");
+            if ($('#txtUsername').val() == "") {
+                $('#lblErrUsername').html("Please Enter a Username");
                 validinfo = false;
             }
-            else if($('#Username').val().length < 4){
-                $('#UsernameError').html("Please Enter a Username that is at Least 4 Characters");
+            else if($('#txtUsername').val().length < 4){
+                $('#lblErrUsername').html("Please Enter a Username that is at Least 4 Characters");
                 validinfo = false;
             }
-            else if ($('#Username').val().length > 30) {
-                $('#UsernameError').html("Please Enter a Username that is 30 Characters or Less");
+            else if ($('#txtUsername').val().length > 30) {
+                $('#lblErrUsername').html("Please Enter a Username that is 30 Characters or Less");
                 validinfo = false;
             }
             else {
-                $('#UsernameError').html("");
+                $('#lblErrUsername').html("");
             }
             //Password Validation
-            if ($('#Password').val() == "") {
-                $('#PasswordError').html("Please Enter a Password");
+            if ($('#txtPassword').val() == "") {
+                $('#lblErrPassword').html("Please Enter a Password");
                 validinfo = false;
             }
-            else if ($('#Password').val().length < 4) {
-                $('#PasswordError').html("Please Enter a Password that is at Least 4 Characters");
+            else if ($('#txtPassword').val().length < 4) {
+                $('#lblErrPassword').html("Please Enter a Password that is at Least 4 Characters");
                 validinfo = false;
             }
-            else if ($('#Password').val().length > 30) {
-                $('#PasswordError').html("Please Enter a Password that is 30 Characters or Less");
+            else if ($('#txtPassword').val().length > 30) {
+                $('#lblErrPassword').html("Please Enter a Password that is 30 Characters or Less");
                 validinfo = false;
             }
             else {
-                $('#PasswordError').html("");
+                $('#lblErrPassword').html("");
             }
             //Name Validation
-            if ($('#Name').val() == "") {
-                $('#NameError').html("Please Enter in Your Name");
+            if ($('#txtName').val() == "") {
+                $('#lblErrName').html("Please Enter in Your Name");
                 validinfo = false;
             }
-            else if ($('#Name').val().length > 10) {
-                $('#NameError').html("Please Only Enter in the First 10 Letters of Your Name");
+            else if ($('#txtName').val().length > 10) {
+                $('#lblErrName').html("Please Only Enter in the First 10 Letters of Your Name");
                 validinfo = false;
             }
             else {
-                $('#NameError').html("");
+                $('#lblErrName').html("");
             }
+            //Gender Validation
+            if ($('#ddlGender').val() == "-1") {
+                $('#lblErrGender').html("Please Select a Gender");
+                validinfo = false;
+            }
+            else {
+                $('#lblErrGender').html("");
+            }
+            
             return validinfo;
         });
 </script>  
