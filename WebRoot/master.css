@@ -4,6 +4,7 @@ body {
 	}
 	
 .banner {
+	margin-top:5%;
 	padding: 50px;
 	border-radius:10px;
 	background-color:#7777CC;
@@ -13,7 +14,7 @@ body {
 	}
 
 .loginBox {
-	margin-top:20%;
+	margin-top:5%;
 	padding: 20px;
 	border-radius:5px;
 	background-color:#AAAACC;
@@ -40,7 +41,7 @@ body {
 	}
 	
 .registerBox {
-	margin-top:20%;
+	margin-top:5%;
 	padding: 20px;
 	border-radius:5px;
 	background-color:#AAAACC;

@@ -18,6 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="Welcome">
 	<link rel="stylesheet" type="text/css" href="master.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <style type="text/css">
@@ -31,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript">
 
       function initialize() {
-      var startlatlng=new google.maps.LatLng(32.732556, -97.113972);
+      	var startlatlng=new google.maps.LatLng(32.732556, -97.113972);
         var mapOptions = {
           center: startlatlng,
           zoom: 18,
@@ -48,69 +49,80 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		      
       }
       function addMarker(location, map) {
-
   		var marker = new google.maps.Marker({
       	position: location,
-      	map: map
-      	//title:username
+      	map: map,
+      	title:$('#hdnUsername').val()
   		});
+  		
+  		///var title = ${username}.toString();
+  		//marker.setTitle("test1");
   		marker.set("editing", false);
     
 
-    var htmlBox = document.createElement("div");
-    //htmlBox.innerHTML = options.html || "";
-    htmlBox.style.width = "300px";
-    htmlBox.style.height = "100px";
-    
-
-    var textBox = document.createElement("textarea");
-    //textBox.innerText = options.html || "";
-    textBox.style.width = "300px";
-    textBox.style.height = "100px";
-    textBox.style.display = "none";
-    
-
-    var container = document.createElement("div");
-    container.style.position = "relative";
-    container.appendChild(htmlBox);
-    container.appendChild(textBox);
-    
-
-    var editBtn = document.createElement("button");
-    editBtn.innerText = "Edit";
-    container.appendChild(editBtn);
-    
-
-    var infoWnd = new google.maps.InfoWindow({
-      content : container
-    });
-    
-
-    google.maps.event.addListener(marker, "click", function() {
-      infoWnd.open(marker.getMap(), marker);
-    });
-    
-
-    google.maps.event.addDomListener(editBtn, "click", function() {
-      marker.set("editing", !marker.editing);
-    });
-    
-
-    google.maps.event.addListener(marker, "editing_changed", function(){
-      textBox.style.display = this.editing ? "block" : "none";
-      htmlBox.style.display = this.editing ? "none" : "block";
-    });
-    
-
-    google.maps.event.addDomListener(textBox, "change", function(){
-      htmlBox.innerHTML = textBox.value;
-      marker.set("html", textBox.value);
-    });
-    return marker;
-  		map.setCenter(location); 
-  	  google.maps.event.addListener(marker, "html_changed", function(){
-      console.log(this.html);
-    });
+	    var htmlBox = document.createElement("div");
+	    //htmlBox.innerHTML = options.html || "";
+	    htmlBox.style.width = "300px";
+	    htmlBox.style.height = "100px";
+	    
+	    var inputBox = document.createElement("input");
+	    inputBox.style.width = "300px";
+	    inputBox.style.display = "none";
+	    //inputBox.text = marker.getTitle();
+	
+	    var textBox = document.createElement("textarea");
+	    //textBox.innerText = options.html || "";
+	    textBox.style.width = "300px";
+	    textBox.style.height = "100px";
+	    textBox.style.display = "none";
+	    
+	
+	    var container = document.createElement("div");
+	    container.style.position = "relative";
+	    container.appendChild(htmlBox);
+	    container.appendChild(inputBox);
+	    container.appendChild(textBox);
+	    
+	
+	    var editBtn = document.createElement("button");
+	    editBtn.innerText = "Edit";
+	    container.appendChild(editBtn);
+	    
+	
+	    var infoWnd = new google.maps.InfoWindow({
+	      content : container
+	    });
+	    
+	
+	    google.maps.event.addListener(marker, "click", function() {
+	      infoWnd.open(marker.getMap(), marker);
+	    });
+	    
+	
+	    google.maps.event.addDomListener(editBtn, "click", function() {
+	      marker.set("editing", !marker.editing);
+	    });
+	    
+	
+	    google.maps.event.addListener(marker, "editing_changed", function(){
+	      inputBox.style.display = this.editing ? "block" : "none";
+	      textBox.style.display = this.editing ? "block" : "none";
+	      htmlBox.style.display = this.editing ? "none" : "block";
+	    });
+	    
+	    google.maps.event.addDomListener(inputBox, "change", function() {
+	      marker.setTitle(inputBox.value);
+	    });
+	
+	    google.maps.event.addDomListener(textBox, "change", function(){
+	      htmlBox.innerHTML = textBox.value;
+	      marker.set("html", textBox.value);
+	    });
+	    return marker;
+	  		map.setCenter(location); 
+	  	  google.maps.event.addListener(marker, "html_changed", function(){
+	      console.log(this.html);
+	    });
   		}
 
 
@@ -124,6 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="message">
     	Welcome ${username}
     </div>
+    <input type="hidden" id="hdnUsername" value="${username}" />
     <div id="map_canvas" style="width:100%; height:100%">
     </div>	
     <br />
