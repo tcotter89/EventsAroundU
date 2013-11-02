@@ -45,6 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         google.maps.event.addListener(map, 'click', function(event) {
        // alert(event.latLng);
     	addMarker(event.latLng, map);
+    	document.getElementById('latlnginfo').value=event.latLng;
   		});      
   		      
       }
@@ -54,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       	map: map,
       	title:$('#hdnUsername').val()
   		});
-  		
+  		document.getElementById('username').value=$('#hdnUsername').val();
   		///var title = ${username}.toString();
   		//marker.setTitle("test1");
   		marker.set("editing", false);
@@ -88,7 +89,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    editBtn.innerText = "Edit";
 	    container.appendChild(editBtn);
 	    
-	
+		var editBtn1 = document.createElement("button");
+	    editBtn1.innerText = "Remove";
+	    container.appendChild(editBtn1);
+
+	    
+
+	    
 	    var infoWnd = new google.maps.InfoWindow({
 	      content : container
 	    });
@@ -103,8 +110,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	      marker.set("editing", !marker.editing);
 	    });
 	    
+	    google.maps.event.addDomListener(editBtn1, "click", function() {
+	     removeMarker(marker);
+  		 //marker.setMap(null);
+        });
+        
 	
-	    google.maps.event.addListener(marker, "editing_changed", function(){
+	    google.maps.event.addListener(marker, "editing_changed", function(){ 
 	      inputBox.style.display = this.editing ? "block" : "none";
 	      textBox.style.display = this.editing ? "block" : "none";
 	      htmlBox.style.display = this.editing ? "none" : "block";
@@ -112,11 +124,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    
 	    google.maps.event.addDomListener(inputBox, "change", function() {
 	      marker.setTitle(inputBox.value);
+	      document.getElementById('title').value=inputBox.value;
 	    });
 	
 	    google.maps.event.addDomListener(textBox, "change", function(){
 	      htmlBox.innerHTML = textBox.value;
 	      marker.set("html", textBox.value);
+	      document.getElementById('html').value=textBox.value; 
 	    });
 	    return marker;
 	  		map.setCenter(location); 
@@ -124,22 +138,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	      console.log(this.html);
 	    });
   		}
-
-
+  		
+  		function removeMarker(marker){
+  		marker.setMap(null);
+  		document.getElementById('html').value="";
+  		document.getElementById('latlnginfo').value="";
+  		document.getElementById('title').value="";
+  		document.getElementById('username').value="";
+  		}
+  		
+        //Show create time 
+        //document.write(Date())
+        
+		
+		
 		google.maps.event.addDomListener(window, 'load', initialize);
-
-    </script>
 	
+	</script>
   </head>
   
   <body>
     <div class="message">
     	Welcome ${username}
     </div>
-    <input type="hidden" id="hdnUsername" value="${username}" />
+   <input type="hidden" id="hdnUsername" value="${username}" />
     <div id="map_canvas" style="width:100%; height:100%">
     </div>	
     <br />
+        <s:form name="marker" action="addmarker.action" >
+		Lat & Lng: <input type="text" id="latlnginfo" name="latlnginfo"/>
+		Title: <input type="text" id="title" name="title"/>
+		Description: <input type="text" id="html" name="html"/>
+		Username: <input type="text" id="username" name="username"/>
+		</s:form>
 
   </body>
 </html>
