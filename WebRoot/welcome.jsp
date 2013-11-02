@@ -8,6 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
   <head>
+  	<jsp:include page="heading.jsp"/> 
     <base href="<%=basePath%>">
     
     <title>Welcome To EAU</title>
