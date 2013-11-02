@@ -9,6 +9,12 @@
 		</action>
 		<action name="Register" class="action.Register" method = "RunRegister">
 		</action>
+		<action name="Profile" class="action.Profile" method = "RunProfile">
+			<result name="true">profile.jsp</result>
+		</action>
+		<action name="Logout" class="" method = "">
+			<result>index.jsp</result>
+		</action>
 	</package>
 
 </struts>    

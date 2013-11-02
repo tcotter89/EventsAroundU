@@ -62,7 +62,9 @@ body {
 	}
 		
 .message {
-	margin-top:10%;
+	margin-top:2%;
+	margin-bottom:2%;
+	margin-right:7%;
 	padding:20px;
 	border-radius:5px;
 	background-color:#AACCAA;
@@ -79,13 +81,28 @@ body {
 	width:70%;
 	}
 	
-html, body, #map-canvas {
-    margin: 0;
-    padding: 0;
-    height: 70%;
+.centered {
+	text-align:center;
+	}
+	
+.content {
+	margin-left:9%;
+	}
+	
+#map_canvas {
+    margin:0;
+    padding:0;
+    height:70%;
+    width:90% !important;
     }
     
     
 .errorMsg {
 	color:red !important;
+	}
+
+.header {
+	text-align:right;
+	padding-top:1%;
+	padding-right:2%
 	}
