@@ -141,6 +141,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		
   		function removeMarker(marker){
   		marker.setMap(null);
+  		document.getElementById('html').value="";
+  		document.getElementById('latlnginfo').value="";
+  		document.getElementById('title').value="";
+  		document.getElementById('username').value="";
   		}
   		
         //Show create time 
