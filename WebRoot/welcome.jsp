@@ -88,7 +88,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    editBtn.innerText = "Edit";
 	    container.appendChild(editBtn);
 	    
-	
+		var editBtn1 = document.createElement("button");
+	    editBtn1.innerText = "Remove";
+	    container.appendChild(editBtn1);
+
+	    
+
+	    
 	    var infoWnd = new google.maps.InfoWindow({
 	      content : container
 	    });
@@ -103,8 +109,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	      marker.set("editing", !marker.editing);
 	    });
 	    
+	    google.maps.event.addDomListener(editBtn1, "click", function() {
+	     removeMarker(marker);
+  		 //marker.setMap(null);
+        });
+        
 	
-	    google.maps.event.addListener(marker, "editing_changed", function(){
+	    google.maps.event.addListener(marker, "editing_changed", function(){ 
 	      inputBox.style.display = this.editing ? "block" : "none";
 	      textBox.style.display = this.editing ? "block" : "none";
 	      htmlBox.style.display = this.editing ? "none" : "block";
@@ -124,19 +135,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	      console.log(this.html);
 	    });
   		}
-
-
+  		
+  		function removeMarker(marker){
+  		marker.setMap(null);
+  		}
+  		
+        //Show create time 
+        //document.write(Date())
+        
+		
+		
 		google.maps.event.addDomListener(window, 'load', initialize);
-
-    </script>
 	
+	</script>
   </head>
   
   <body>
     <div class="message">
     	Welcome ${username}
     </div>
-    <input type="hidden" id="hdnUsername" value="${username}" />
+   <input type="hidden" id="hdnUsername" value="${username}" />
     <div id="map_canvas" style="width:100%; height:100%">
     </div>	
     <br />
