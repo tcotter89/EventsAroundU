@@ -3,10 +3,10 @@
   <package name="default" location="10,165" size="315,245">
     <action name="Login" location="65,47" size="150,62">
       <result name="login_fail">
-        <resourceEdge source="login_fail" routing="0" target="welcome.jsp" />
+        <resourceEdge source="login_fail" routing="0" target="index.jsp" />
       </result>
       <result name="login_success">
-        <resourceEdge source="login_success" routing="0" target="index.jsp" />
+        <resourceEdge source="login_success" routing="0" target="welcome.jsp" />
       </result>
     </action>
     <action name="Register" location="65,163" size="150,40" />

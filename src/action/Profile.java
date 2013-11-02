@@ -29,10 +29,10 @@ public class Profile extends HttpServlet{
 	
 	HttpServletRequest request = ServletActionContext.getRequest();
 	
-	public void RunProfile()throws SQLException{
+	public String RunProfile()throws SQLException{
 		
 		getParameter();
-		getUserData();
+		return getUserData();
 	}
 	
 	private void getParameter(){
