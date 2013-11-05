@@ -31,7 +31,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        src="https://maps.google.com/maps/api/js?sensor=false&language=en">
     </script>
     <script type="text/javascript">
-
+      var judgePoint = 0;
+      
       function initialize() {
       	var startlatlng=new google.maps.LatLng(32.732556, -97.113972);
         var mapOptions = {
@@ -45,8 +46,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        
         google.maps.event.addListener(map, 'click', function(event) {
        // alert(event.latLng);
-    	addMarker(event.latLng, map);
+       if(judgePoint == 0){
+       	addMarker(event.latLng, map);
     	document.getElementById('latlnginfo').value=event.latLng;
+    	judgePoint = 1;
+       }
+    	
   		});      
   		      
       }
@@ -113,6 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    
 	    google.maps.event.addDomListener(editBtn1, "click", function() {
 	     removeMarker(marker);
+	     judgePoint = 0;
   		 //marker.setMap(null);
         });
         
