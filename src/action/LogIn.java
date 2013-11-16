@@ -2,6 +2,7 @@ package action;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -43,7 +44,10 @@ public class Login extends HttpServlet{
 	}
 
 	public String TestUser() throws SQLException{
-		System.out.println("111111111111111111111111111111111111");
+		HttpSession session = request.getSession(true);
+		session.setAttribute("username", username);
+		
+		//System.out.println("111111111111111111111111111111111111");
 		ConnToDB ctd = new ConnToDB();
 		conn = ctd.getConnection();
 		stmt = conn.createStatement();
@@ -52,19 +56,21 @@ public class Login extends HttpServlet{
 		System.out.println("select * from user where user_name = '"
 				+ username + "'");
 		if (rs.next()) {
-			System.out.println("2222222222222222222222222222222222222222");
+			//System.out.println("2222222222222222222222222222222222222222");
 			DBpassword = rs.getString("user_password");
 			
 			if (DBpassword.equals(password)) {
 				System.out.println("password is right");
 				return "login_success";
 			} else {
+				System.out.println("Password is incorrect");
 				return "login_fail";
 			}
 
 		} else {
 			return "login_fail";
 		}
+		//return "login_success";
 	}
 }
 

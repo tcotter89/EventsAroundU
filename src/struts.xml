@@ -12,6 +12,10 @@
 		<action name="Profile" class="action.Profile" method = "RunProfile">
 			<result name="true">/profile.jsp</result>
 		</action>
+		<action name="EditProfile" class="action.EditProfile" method= "RunEditProfile">
+			<result name="success">/welcome.jsp</result>
+			<result name="failure">/profile.jsp</result>
+		</action>
 		<action name="Logout" class="" method = "">
 			<result>index.jsp</result>
 		</action>

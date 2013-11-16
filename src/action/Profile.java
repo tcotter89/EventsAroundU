@@ -2,6 +2,7 @@ package action;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -28,15 +29,16 @@ public class Profile extends HttpServlet{
 	private ResultSet resultSet;
 	
 	HttpServletRequest request = ServletActionContext.getRequest();
+	HttpSession session = request.getSession(true);
 	
 	public String RunProfile()throws SQLException{
-		
+		//System.out.println(session.getAttribute("username"));
 		getParameter();
 		return getUserData();
 	}
 	
 	private void getParameter(){
-		username = request.getParameter("username");
+		username = (String) session.getAttribute("username");
 	}
 	
 	private String getUserData ()throws SQLException{
@@ -46,21 +48,23 @@ public class Profile extends HttpServlet{
 			connection = connToDB.getConnection();
 			
 			//execute the SQL sentence
-			String findUserData = "select * from user where user_username='" + username + "'";
+			String findUserData = "select user_username from user where user_name='" + username + "'";
+			System.out.println(findUserData);
 	
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(findUserData);
 			while (resultSet.next()) {
-				for (int i = 1; i <=10; i++) {
+				for (int i = 1; i <=1; i++) {
 					System.out.printf("%-8s\t", resultSet.getString(i));
 				}
+				userrealname = resultSet.getString(1);
 			}
 			
 			//release resource
 			resultSet.close();
 			statement.close();
 			connection.close();
-			System.out.println("User data loaded successfully");
+			System.out.println("User " + username + " data loaded successfully");
 			return "true";
 		} catch (Exception e) {
 			return "false";
