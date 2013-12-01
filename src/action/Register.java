@@ -1,6 +1,6 @@
 package action;
 
-import javax.mail.Session;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.*;
@@ -30,7 +30,7 @@ public class Register extends HttpServlet{
 	private Connection connection;
 	private Statement statement;
 	private ResultSet resultSet;
-	
+
 	
 	
 	HttpServletRequest request = ServletActionContext.getRequest();
@@ -40,10 +40,12 @@ public class Register extends HttpServlet{
 	 * This method is called when user register
 	 */
 	
-	public void RunRegister()throws SQLException{
+	public String RunRegister()throws SQLException{
 		
 		getParameter();
 		Connection();
+		
+		return "success";
 	}
 	
 	/**

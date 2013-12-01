@@ -173,11 +173,14 @@ session.setAttribute("sessUserName", request.getParameter("username"));
     <div id="map_canvas" style="width:100%; height:100%">
     </div>	
     <br />
-        <s:form name="marker" action="addmarker.action" >
+        <s:form name="marker" action="AddMarker.action" >
 		Lat & Lng: <input type="text" id="latlnginfo" name="latlnginfo"/>
 		Title: <input type="text" id="title" name="title"/>
 		Description: <input type="text" id="html" name="html"/>
 		Username: <input type="text" id="username" name="username"/>
+			 <tr>
+       	   		<td><s:submit value="Log in"/></td>
+	         </tr>
 		</s:form>
 
   </body>
