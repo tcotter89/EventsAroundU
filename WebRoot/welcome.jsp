@@ -44,18 +44,57 @@ session.setAttribute("sessUserName", request.getParameter("username"));
         var map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
             
-       
+
+        var n_1 = document.getElementsByName("n1");//title
+        var n_2 = document.getElementsByName("n2");//description
+        var n_3 = document.getElementsByName("n3");//time
+        var n_4 = document.getElementsByName("n4");//user
+        var n_5 = document.getElementsByName("n5");//lng
+        var n_6 = document.getElementsByName("n6");//lat
+        
+        //for(var i=0;i<n_3.length;i++){
+        //	alert(n_3[i].value);
+        //}
+        for (var i1=0; i1<n_2.length;i1++){
+        	n_2[i1].value=n_4[i1].value.toString()+": "+n_2[i1].value.toString()+"----"+n_3[i1].value.toString();
+        	//alert(n_2[i1].value);
+        }
+        
+        var markerN=[];
+        //var descN=[];
+        //var infowindow=[];
+        for (var i2 = 0; i2 < n_1.length; i2++) {
+    	var positionN = new google.maps.LatLng(n_5[i2].value, n_6[i2].value);
+   		markerN[i2] = new google.maps.Marker({
+      	position: positionN,
+      	map: map,
+      	title: n_1[i2].value.toString()
+    	});
+    	var descN = n_2[i2].value;
+    	attachSecretMessage(markerN[i2], i2, descN);
+    	}
+    	
         google.maps.event.addListener(map, 'click', function(event) {
        // alert(event.latLng);
        if(judgePoint == 0){
        	addMarker(event.latLng, map);
     	document.getElementById('latlnginfo').value=event.latLng;
     	judgePoint = 1;
-       }
-    	
+       }    	
   		});      
   		      
       }
+      
+      function attachSecretMessage(marker, num,desc ) {
+  		var message = desc ;
+  		var infowindow = new google.maps.InfoWindow({
+    		content: message
+  		});
+
+  		google.maps.event.addListener(marker, 'click', function() {
+    		infowindow.open(marker.get('map'), marker);
+  		});
+		}
       function addMarker(location, map) {
   		var marker = new google.maps.Marker({
       	position: location,
@@ -157,8 +196,6 @@ session.setAttribute("sessUserName", request.getParameter("username"));
   		
         //Show create time 
         //document.write(Date())
-        
-		
 		
 		google.maps.event.addDomListener(window, 'load', initialize);
 	
@@ -167,20 +204,33 @@ session.setAttribute("sessUserName", request.getParameter("username"));
   
   <body>
     <div class="message">
-    	Welcome ${username}
+    	<B>Welcome ${username}</B>
     </div>
    <input type="hidden" id="hdnUsername" value="${username}" />
     <div id="map_canvas" style="width:100%; height:100%">
     </div>	
     <br />
+
+    	<s:form name="news">
+        <s:iterator value="#request.news" id="news">        
+        <input name="n1" id="news_title" type="hidden" value="<s:property value="#news.title"/>"/>
+        <input name="n2" id="news_desc" type="hidden" value="<s:property value="#news.desc"/>"/>
+        <input name="n3" id="news_time" type="hidden" value="<s:property value="#news.time"/>"/>
+        <input name="n4" id="news_user" type="hidden" value="<s:property value="#news.user"/>"/>
+        <input name="n5" id="news_lng" type="hidden" value="<s:property value="#news.lng"/>"/>
+        <input name="n6" id="news_lat" type="hidden" value="<s:property value="#news.lat"/>"/>        
+        </s:iterator>        
+        </s:form>
+    
         <s:form name="marker" action="AddMarker.action" >
-		Lat & Lng: <input type="text" id="latlnginfo" name="latlnginfo"/>
-		Title: <input type="text" id="title" name="title"/>
-		Description: <input type="text" id="html" name="html"/>
-		Username: <input type="text" id="username" name="username"/>
-			 <tr>
-       	   		<td><s:submit value="Log in"/></td>
-	         </tr>
+		<input type="hidden" id="latlnginfo" name="latlnginfo"/>
+		<input type="hidden" id="title" name="title"/>
+		<input type="hidden" id="html" name="html"/>
+		<input type="hidden" id="username" name="username"/>
+
+       	   		<td><B>Ready to share your Event ?</B></td>
+       	   		<td><s:submit value="Submit"/></td>
+
 		</s:form>
 
   </body>

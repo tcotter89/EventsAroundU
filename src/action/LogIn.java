@@ -68,19 +68,37 @@ public class Login extends HttpServlet{
 				ArrayList rows = new ArrayList();
 				stmtm = conn.createStatement();
 				rsm = stmtm
-				.executeQuery("select * from marker order by ID desc dlimit 5");
+				.executeQuery("select * from marker order by ID desc limit 5");
 				HashMap row = new HashMap();
 				if(rsm.next()==false){
 					rows.add(row);
 					row = new HashMap();
 				} else {
 					do {
-						System.out.println(rsm.getString(1));
-						System.out.println(rsm.getString(1));
+//						System.out.println(rsm.getString(2));
+//						System.out.println(rsm.getString(3));
+//						System.out.println(rsm.getString(4));
+//						System.out.println(rsm.getString(5));
+//						System.out.println(rsm.getString(6));
+//						System.out.println(rsm.getString(7));
+						
+						row.put("title", rsm.getObject(2));
+						row.put("desc", rsm.getObject(3));
+						row.put("time", rsm.getObject(4));
+						row.put("user", rsm.getObject(5));
+						row.put("lng", rsm.getObject(6));
+						row.put("lat", rsm.getObject(7));
+						
+						rows.add(row);
+						row = new HashMap();
+						
 					}while (rsm.next());
-				
+				}													
+					request.setAttribute("news", rows);
+					
 				return "login_success";
-			} else {
+				
+			}else {
 				System.out.println("Password is incorrect");
 				return "login_fail";
 			}
@@ -88,7 +106,11 @@ public class Login extends HttpServlet{
 		} else {
 			return "login_fail";
 		}
-		//return "login_success";
+	}
+	
+	public static void main(String[] args) throws SQLException{
+		Login lg= new Login();
+		String ss = lg.TestUser();
 	}
 }
 

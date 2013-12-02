@@ -87,15 +87,15 @@ public class Register extends HttpServlet{
 			statement.execute(insertSqlString);
 			
 			//to show the all table
-			String querySqlString = "select * from user";
-			statement = connection.createStatement();
-			resultSet = statement.executeQuery(querySqlString);
-			while (resultSet.next()) {
-				for (int i = 1; i <=10; i++) {
-					System.out.printf("%-8s\t", resultSet.getString(i));
-				}
-				
-			}
+//			String querySqlString = "select * from user";
+//			statement = connection.createStatement();
+//			resultSet = statement.executeQuery(querySqlString);
+//			while (resultSet.next()) {
+//				for (int i = 1; i <=10; i++) {
+//					System.out.printf("%-8s\t", resultSet.getString(i));
+//				}
+//				
+//			}
 			
 			//release resource
 			resultSet.close();

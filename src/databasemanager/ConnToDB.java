@@ -23,7 +23,7 @@ public class ConnToDB {
 		try {
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:MySQL://127.0.0.1:3306/eventsaroundu&zeroDateTimeBehavior=convertToNull","root","5945");
+			connection = DriverManager.getConnection("jdbc:MySQL://127.0.0.1:3306/eventsaroundu","root","5945");
 			
 			if (!connection.isClosed()) {
 				System.out.println("Succeed to connect the database!!");

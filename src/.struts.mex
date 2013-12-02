@@ -9,7 +9,11 @@
         <resourceEdge source="login_success" routing="0" target="welcome.jsp" />
       </result>
     </action>
-    <action name="Register" location="0,0" size="0,0" />
+    <action name="Register" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="index.jsp" />
+      </result>
+    </action>
     <action name="Profile" location="0,0" size="0,0">
       <result name="true">
         <resourceEdge source="true" routing="0" target="profile.jsp" />
@@ -23,9 +27,9 @@
         <resourceEdge source="failure" routing="0" target="profile.jsp" />
       </result>
     </action>
-    <action name="Logout" location="0,0" size="0,0">
+    <action name="AddMarker" location="0,0" size="0,0">
       <result name="success">
-        <resourceEdge source="success" routing="0" target="index.jsp" />
+        <resourceEdge source="success" routing="0" target="welcome.jsp" />
       </result>
     </action>
   </package>
@@ -33,5 +37,6 @@
   <webResource name="index.jsp" path="/index.jsp" location="350,50" size="150,55" />
   <webResource name="profile.jsp" path="/profile.jsp" location="0,0" size="0,0" />
   <webResource name="index.jsp" path="index.jsp" location="0,0" size="0,0" />
+  <webResource name="s1.jsp" path="/s1.jsp" location="0,0" size="0,0" />
 </Struts2Diagram>
 

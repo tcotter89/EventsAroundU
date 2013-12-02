@@ -9,6 +9,8 @@ import databasemanager.*;
 //import java.util.Date;
 //import java.text.SimpleDateFormat;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class AddMarker extends HttpServlet{
@@ -27,6 +29,9 @@ public class AddMarker extends HttpServlet{
 	private Statement statement;
 	private ResultSet resultSet;
 	
+	Statement stmtm = null;
+	ResultSet rsm = null;
+	
 	
 	
 	HttpServletRequest request = ServletActionContext.getRequest();
@@ -36,6 +41,7 @@ public class AddMarker extends HttpServlet{
 		
 		getParameter();
 		Connection();
+		
 		return "success";
 	}
 	
@@ -90,21 +96,51 @@ public class AddMarker extends HttpServlet{
 			statement = connection.createStatement();
 			statement.execute(insertSqlString);
 			
+			ArrayList rows = new ArrayList();
+			stmtm = connection.createStatement();
+			rsm = stmtm
+			.executeQuery("select * from marker order by ID desc limit 5");
+			HashMap row = new HashMap();
+			if(rsm.next()==false){
+				rows.add(row);
+				row = new HashMap();
+			} else {
+				do {
+//					System.out.println(rsm.getString(2));
+//					System.out.println(rsm.getString(3));
+//					System.out.println(rsm.getString(4));
+//					System.out.println(rsm.getString(5));
+//					System.out.println(rsm.getString(6));
+//					System.out.println(rsm.getString(7));
+					
+					row.put("title", rsm.getObject(2));
+					row.put("desc", rsm.getObject(3));
+					row.put("time", rsm.getObject(4));
+					row.put("user", rsm.getObject(5));
+					row.put("lng", rsm.getObject(6));
+					row.put("lat", rsm.getObject(7));
+					
+					rows.add(row);
+					row = new HashMap();
+					
+				}while (rsm.next());
+			}													
+				request.setAttribute("news", rows);
 			//to show the all table
-			String querySqlString = "select * from marker";
-			statement = connection.createStatement();
-			resultSet = statement.executeQuery(querySqlString);
-			while (resultSet.next()) {
-				for (int i = 1; i <=8; i++) {
-					System.out.printf("%-8s\t", resultSet.getString(i));
-				}
-				
-			}
+//			String querySqlString = "select * from marker";
+//			statement = connection.createStatement();
+//			resultSet = statement.executeQuery(querySqlString);
+//			while (resultSet.next()) {
+//				for (int i = 1; i <=8; i++) {
+//					System.out.printf("%-8s\t", resultSet.getString(i));
+//				}
+//				
+//			}
 			
 			//release resource
-			resultSet.close();
-			statement.close();
-			connection.close();
+			//resultSet.close();
+			//statement.close();
+			//connection.close();
 			System.out.println("User added successfully");
 		}
 	}

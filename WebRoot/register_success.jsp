@@ -5,30 +5,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
   <head>
     <base href="<%=basePath%>">
     
-    <title></title>
+    <title>success</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<link rel="stylesheet" type="text/css" href="master.css">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
 
   </head>
   
   <body>
-  	<div class="header">
-  		<s:url action="Profile.action" var="profileLink">
-		</s:url>
-		<a href="${profileLink}">Profile</a>
-  		|
-  		<!--<s:label id="lblLogout" value="Logout" ></s:label>-->
-  		<a href=index.jsp>Logout</a>
-  	</div>
+    U have register successfully! <br>
+   <a href= index.jsp>Click here</a> to Log in!
   </body>
 </html>
